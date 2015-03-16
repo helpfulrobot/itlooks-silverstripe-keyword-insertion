@@ -1,0 +1,7 @@
+---
+Name: KeywordInsertionPageRoutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'keyinsertion//$Keyword' : 'KeywordInsertionPage_Controller'

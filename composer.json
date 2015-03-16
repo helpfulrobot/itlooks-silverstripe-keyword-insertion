@@ -1,0 +1,21 @@
+{
+  "name": "ChristophHauff/silverstripe-keyword-insertion",
+  "description": "A keyword insertion module to provide pages with wildcards in content.",
+  "type": "silverstripe-module",
+  "homepage": "http://github.com/ChristophHauff/silverstripe-keyword-insertion",
+  "keywords": ["silverstripe", "keyword-insertion", "seo", "wildcards"],
+  "license": "MIT LICENSE",
+  "authors": [
+    {"name": "Christoph Hauff","email": "hauff@itlooks.de"}
+  ],
+  "support": {
+    "issues": "http://github.com/ChristophHauff/silverstripe-keyword-insertion/issues"
+  },
+  "require": {
+    "silverstripe/cms": "~3.1",
+    "silverstripe/framework": "~3.1"
+  },
+  "extra": {
+    "installer-name": "keyword-insertion"
+  }
+}
