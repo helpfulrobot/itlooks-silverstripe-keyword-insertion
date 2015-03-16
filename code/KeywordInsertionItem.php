@@ -25,12 +25,12 @@ class KeywordInsertionItem extends DataObject {
     /**
      * @var string
      */
-    static $singular_name = 'Keyword Insertion Element';
+    static $singular_name = 'Wildcard Element';
 
     /**
      * @var string
      */
-    static $plural_name = 'Keyword Insertion Element';
+    static $plural_name = 'Wildcard Element';
 
     /**
      * Returns the fieldset for cms backend
@@ -49,11 +49,11 @@ class KeywordInsertionItem extends DataObject {
             array(
                 new TextField(
                     'Keyword',
-                    _t('KeywordInsertion.KEYWORD_LABEL', 'Keyword')
+                    _t('KeywordInsertionPage.KEYWORD_LABEL', 'Keyword')
                 ),
                 new TextField(
                     'Value',
-                    _t('KeywordInsertion.VALUE_LABEL', 'Value')
+                    _t('KeywordInsertionPage.VALUE_LABEL', 'Value')
                 )
             )
         );

@@ -50,7 +50,7 @@ class KeywordInsertionPage extends Page {
             $sKeywordInfoString .= "{{".$sKeyword."}}<br/>";
         }
 
-        $gridFieldConfig = GridFieldConfig::create()->addComponents(
+        $oGridFieldConfig = GridFieldConfig::create()->addComponents(
             new GridFieldToolbarHeader(),
             new GridFieldAddNewButton('toolbar-header-right'),
             new GridFieldSortableHeader(),
@@ -61,17 +61,25 @@ class KeywordInsertionPage extends Page {
             new GridFieldDetailForm()
         );
 
+        $oDataColumns = $oGridFieldConfig->getComponentByType('GridFieldDataColumns');
+
+        $oDataColumns->setDisplayFields(
+            array(
+                'Keyword' => 'Keyword'
+            )
+        );
+
         $fields->addFieldsToTab(
             'Root.Main',
             array(
                 new GridField(
                     "KeywordInsertionItems",
                     _t(
-                        'KeywordInsertion.KEYWORD_ITEMS_LABEL',
-                        'Keyword Element'
+                        'KeywordInsertionPage.KEYWORD_ITEMS_LABEL',
+                        'Wildcard Elements'
                     ),
                     $this->KeywordInsertionItems(),
-                    $gridFieldConfig
+                    $oGridFieldConfig
                 ),
                 new LiteralField(
                     'WildcardInfo',

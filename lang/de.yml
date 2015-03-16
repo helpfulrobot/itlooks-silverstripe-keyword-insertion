@@ -4,3 +4,5 @@ de:
     WILDCARD_INFO: 'Sie können mit <strong>{{</strong> und <strong>}}</strong> Wildcard-Elemente in den Inhalt einfügen.'
     WILDCARD_INFO_EXAMPLE: 'Zum Beispiel kann ein Wildcard-Element "mywildcard" genutzt werden, indem <strong>{{mywildcard}}</strong> in den Text eingefügt wird.'
     WILDCARD_INFO_KEYWORDS_AVAILABLE: 'Die folgenden Elemente können verwendet werden:'
+    KEYWORD_LABEL: 'Keyword'
+    VALUE_LABEL: 'Value'
