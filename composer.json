@@ -1,5 +1,5 @@
 {
-  "name": "itLooks/silverstripe-keyword-insertion",
+  "name": "itlooks/silverstripe-keyword-insertion",
   "description": "A keyword insertion module to provide pages with wildcards in content.",
   "type": "silverstripe-module",
   "homepage": "http://github.com/itlooks/silverstripe-keyword-insertion",
