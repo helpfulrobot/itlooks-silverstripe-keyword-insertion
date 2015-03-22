@@ -209,9 +209,14 @@ class KeywordInsertionPage_Controller extends Page_Controller {
      * @return string Rendered template
      */
     public function renderInsertionPage(SS_HTTPRequest $request) {
-        $iPageId = $this->pageId();
-        $oPage = $this->pageObject($iPageId);
+        $sUrlSegment = $this->getUrlSegment($request->getURL());
+        $oPage = $this->pageObject($sUrlSegment);
         
+        if (!$oPage) {
+            $oErrorPage = DataObject::get_one('ErrorPage');
+				    Director::direct($oErrorPage->Link(), 404);	
+        }
+
         $sKeyword = $this->paramKeyword();
         $sContent = $oPage->renderContent($sKeyword);
 
@@ -232,24 +237,29 @@ class KeywordInsertionPage_Controller extends Page_Controller {
     protected function paramKeyword() {
         return $this->request->param('Keyword');
     }
-    
-    /**
-     * Get the page id
-     *
-     * return int
-     */
-    protected function pageId() {
-        $aSessionData = $this->session->get_all();
-
-        return (int)$aSessionData["CMSMain"]["currentPage"];
-    }
 
     /**
      * Get the page object
      *
      * @return \DataObject
      */
-    protected function pageObject($iPageId) {
-        return DataObject::get_by_id("KeywordInsertionPage", $iPageId);
+    protected function pageObject($sUrlSegment) {
+        return DataObject::get_one("KeywordInsertionPage", "URLSegment='".$sUrlSegment."'");
+    }
+
+    /**
+     * Get the url segment of the requested page
+     *
+     * @return string
+     */
+    protected function getUrlSegment($sUrl = "") {
+        if ($sUrl != "") {
+            $aUrlParts = explode("/", $sUrl);
+            $iLength = count($aUrlParts);
+
+            return $aUrlParts[$iLength-2];
+        }
+        
+        return "";
     }
 }
