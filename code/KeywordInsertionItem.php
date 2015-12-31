@@ -5,7 +5,8 @@
  * key of a keyword insertion request.
  * You can extend this Element with your own data and fields.
  */
-class KeywordInsertionItem extends DataObject {
+class KeywordInsertionItem extends DataObject
+{
 
     /**
      * @var array
@@ -25,19 +26,20 @@ class KeywordInsertionItem extends DataObject {
     /**
      * @var string
      */
-    static $singular_name = 'Wildcard Element';
+    public static $singular_name = 'Wildcard Element';
 
     /**
      * @var string
      */
-    static $plural_name = 'Wildcard Element';
+    public static $plural_name = 'Wildcard Element';
 
     /**
      * Returns the fieldset for cms backend
      * 
      * @return \FieldList
      */
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $fields = new FieldList(
             $rootTab = new TabSet('Root',
                 $tabMain = new Tab('Main')
@@ -66,11 +68,12 @@ class KeywordInsertionItem extends DataObject {
      *
      * @return array
      */
-    public function allKeywordValues() {
+    public function allKeywordValues()
+    {
         $aAllKeywordValues = array();
         $aAllKeywords = self::allKeywords();
         
-        foreach($aAllKeywords as $sKeyword) {
+        foreach ($aAllKeywords as $sKeyword) {
             $aAllKeywordValues[$sKeyword] = $this->{$sKeyword};
         }
 
@@ -82,7 +85,8 @@ class KeywordInsertionItem extends DataObject {
      *
      * @return array
      */
-    public static function allKeywords() {
+    public static function allKeywords()
+    {
         return array(
             'Value',
         );

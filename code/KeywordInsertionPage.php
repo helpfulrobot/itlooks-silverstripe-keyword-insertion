@@ -4,7 +4,8 @@
  * This module adds a page type to provides keyword insertion into a normal text   
  * using wildcards.
  */
-class KeywordInsertionPage extends Page {
+class KeywordInsertionPage extends Page
+{
 
     /**
      * @var array 
@@ -40,13 +41,14 @@ class KeywordInsertionPage extends Page {
      * 
      * @return \FieldList
      */
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $fields = parent::getCMSFields();
         $sKeywordInsertionItem = $this->KeywordInsertionItems()->DataQuery()->dataClass();
         $aKeywords = $sKeywordInsertionItem::allKeywords();
         $sKeywordInfoString = "";
         
-        foreach($aKeywords as $sKeyword) {
+        foreach ($aKeywords as $sKeyword) {
             $sKeywordInfoString .= "{{".$sKeyword."}}<br/>";
         }
 
@@ -120,7 +122,8 @@ class KeywordInsertionPage extends Page {
      *
      * @return string rendered text
      */
-    public function renderContent($sKeyword) {
+    public function renderContent($sKeyword)
+    {
         // Pattern to replace wildcards opened by {{ and closed by }}
         $sPattern = "/{{([\w]+)}}/";
         
@@ -138,11 +141,11 @@ class KeywordInsertionPage extends Page {
             $aMatchedKeys = array_column($aMatches, 1);
             $aInsertionvalues = array();
 
-            foreach($aMatchedKeys as $sKey) {
+            foreach ($aMatchedKeys as $sKey) {
                 $aInsertionvalues[] = $aValues[$sKey];
             }
 
-            $sRenderedContent = str_replace (
+            $sRenderedContent = str_replace(
                 $aMatchedPatterns,
                 $aInsertionvalues,
                 $sContent
@@ -159,7 +162,8 @@ class KeywordInsertionPage extends Page {
      *
      * @return string
      */
-    protected function getInsertionContent() {
+    protected function getInsertionContent()
+    {
         return $this->Content;
     }
     
@@ -168,12 +172,14 @@ class KeywordInsertionPage extends Page {
      *
      * @return object
      */
-    protected function getInsertionItemList() {
+    protected function getInsertionItemList()
+    {
         return $this->KeywordInsertionItems();
     }
 }
 
-class KeywordInsertionPage_Controller extends Page_Controller {
+class KeywordInsertionPage_Controller extends Page_Controller
+{
 
     /**
      * @var array
@@ -197,7 +203,8 @@ class KeywordInsertionPage_Controller extends Page_Controller {
     /**
      * controller init method
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
     }
 
@@ -208,13 +215,14 @@ class KeywordInsertionPage_Controller extends Page_Controller {
      *
      * @return string Rendered template
      */
-    public function renderInsertionPage(SS_HTTPRequest $request) {
+    public function renderInsertionPage(SS_HTTPRequest $request)
+    {
         $sUrlSegment = $this->getUrlSegment($request->getURL());
         $oPage = $this->pageObject($sUrlSegment);
         
         if (!$oPage) {
             $oErrorPage = DataObject::get_one('ErrorPage');
-				    Director::direct($oErrorPage->Link(), 404);	
+            Director::direct($oErrorPage->Link(), 404);
         }
 
         $sKeyword = $this->paramKeyword();
@@ -234,7 +242,8 @@ class KeywordInsertionPage_Controller extends Page_Controller {
      *
      * @return string
      */
-    protected function paramKeyword() {
+    protected function paramKeyword()
+    {
         return $this->request->param('Keyword');
     }
 
@@ -243,7 +252,8 @@ class KeywordInsertionPage_Controller extends Page_Controller {
      *
      * @return \DataObject
      */
-    protected function pageObject($sUrlSegment) {
+    protected function pageObject($sUrlSegment)
+    {
         return DataObject::get_one("KeywordInsertionPage", "URLSegment='".$sUrlSegment."'");
     }
 
@@ -252,7 +262,8 @@ class KeywordInsertionPage_Controller extends Page_Controller {
      *
      * @return string
      */
-    protected function getUrlSegment($sUrl = "") {
+    protected function getUrlSegment($sUrl = "")
+    {
         if ($sUrl != "") {
             $aUrlParts = explode("/", $sUrl);
             $iLength = count($aUrlParts);
